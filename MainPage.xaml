@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="uas_apk.MainPage"
+             Title="GreenNote">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Riwayat" Clicked="OnHistoryClicked" />
+        <ToolbarItem Text="Logout" Clicked="OnLogoutClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label 
+                Text="GreenNote"
+                FontSize="32"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="{StaticResource Primary}"/>
+
+            <Border StrokeShape="RoundRectangle 10" Padding="15" StrokeThickness="1">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Tambah Catatan Baru" FontSize="18" FontAttributes="Bold"/>
+                    <Picker x:Name="categoryPicker" Title="Pilih Kategori"/>
+                    <Editor x:Name="descEditor" Placeholder="Tulis deskripsi kegiatan ramah lingkunganmu..." HeightRequest="100"/>
+                    <Button Text="Simpan Catatan" Clicked="OnAddNoteClicked" HorizontalOptions="Fill" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 10" Padding="15" StrokeThickness="1">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Kategori Baru" FontSize="18" FontAttributes="Bold"/>
+                    <Entry x:Name="newCategoryEntry" Placeholder="Contoh: Daur Ulang Sampah"/>
+                    <Button Text="Tambah Kategori" Clicked="OnAddCategoryClicked"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 10" Padding="15" StrokeThickness="1">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Statistik Kategori" FontSize="18" FontAttributes="Bold" Margin="0,10,0,5"/>
+                    <CollectionView x:Name="StatsCollectionView">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <HorizontalStackLayout Padding="10" Spacing="10">
+                                    <Label Text="{Binding CategoryName}" FontAttributes="Bold" />
+                                    <Label Text="{Binding NoteCount, StringFormat='({0} catatan)'}" />
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
